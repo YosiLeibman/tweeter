@@ -1,11 +1,12 @@
 --auth
----- POST   /login    {username, password}
 ---- POST   /register {username, password, nickname, avatar}
+---- POST   /login    {username, password}
 ---- DELETE /logout 🔐
 --profile
----- GET /
----- PUT /avatar 🔐   {avatar}
----- PUT /nickname 🔐 {nickname}
+---- GET  /
+---- PUT  /avatar 🔐   {avatar}
+---- PUT  /nickname 🔐 {nickname}
+---- POST /follow 🔐 {username}
 --tweets
 ---- GET  / (if not logged - return the tweets of the most popular user)
 ---- POST / 🔐 {text}
