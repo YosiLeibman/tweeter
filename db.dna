@@ -1,0 +1,17 @@
+-user
+-----username
+-----password(hashed)
+-----nickname
+-----avatar
+-----followers[]
+----------------username
+-----tweets[]
+-------------id
+-------------text
+-------------published
+-------------likes[]
+--------------------username
+-------------comments[]
+-----------------------username
+-----------------------text
+-----------------------published
