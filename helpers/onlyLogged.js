@@ -3,11 +3,11 @@ const { refreshes } = require('../db/refreshes')
 
 module.exports.onlyLogged = function (req, res, next) {
 
-    jwt.verify(req.cookies.sid, "SomeSecret", (err, decoded) => {
+    jwt.verify(req.cookies.sid,process.env.ACCESS_TOKEN, (err, decoded) => {
         if (err) {
             if (err.name == "TokenExpiredError") {
                 const dec = jwt.decode(req.cookies.sid)
-                jwt.verify(refreshes[dec.username], "SomeOtherSecret", (err, decoded) => {
+                jwt.verify(refreshes[dec.username], process.env.REFRESH_TOKEN, (err, decoded) => {
                     // invalid both
                     if (err) {
                         return res.status(403).send({ err: 'you logged out, please log in again' })
@@ -25,7 +25,7 @@ module.exports.onlyLogged = function (req, res, next) {
                 return res.status(401).send({ err: 'protected content, please log in again.' })
             }
         } else {
-            jwt.verify(refreshes[decoded.username], "SomeOtherSecret", (err, decoded) => {
+            jwt.verify(refreshes[decoded.username], process.env.REFRESH_TOKEN, (err, decoded) => {
                 // valid access token but invalid refresh, e.g. fast logout
                 if (err) {
                     return res.status(403).send({ err: 'you logged out, please log in again' })
