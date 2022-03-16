@@ -3,7 +3,7 @@ const { v4 } = require("uuid")
 module.exports.db = [
     {
         username: "Jo",
-        password: "123",
+        password: "$2b$10$x8CvKTU0aUpyOoiaAUxzxeq1jOCNCFXlEUqopWSodTZmazSPM9sKO",
         nickname:"Johnnihahoo",
         avatar:"https://ps.w.org/simple-user-avatar/assets/icon-256x256.png",
         following:[
@@ -45,7 +45,7 @@ module.exports.db = [
     },
     {
         username: "Johana",
-        password: "123",
+        password: "$2b$10$x8CvKTU0aUpyOoiaAUxzxeq1jOCNCFXlEUqopWSodTZmazSPM9sKO",
         nickname:"Johana",
         avatar:"https://ps.w.org/simple-user-avatar/assets/icon-256x256.png",
         following:[
@@ -73,7 +73,7 @@ module.exports.db = [
     },
     {
         username: "Jenny",
-        password: "123",
+        password: "$2b$10$x8CvKTU0aUpyOoiaAUxzxeq1jOCNCFXlEUqopWSodTZmazSPM9sKO",
         nickname:"Jen",
         avatar:"https://ps.w.org/simple-user-avatar/assets/icon-256x256.png",
         following:[],
