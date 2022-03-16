@@ -7,8 +7,9 @@ const router = require('express').Router()
 
 router.get('/', everyone, (req, res) => {
     const tweets = []
-    if (req.user && req.user.following.length) {
-
+    console.log(req.user)
+    if (req.user && db.find(u=>u.username == req.user.username)?.following.length) {
+        
         const user = db.find(ur => ur.username == req.user.username)
 
         db.filter(ur => user.following.includes(ur.username)).forEach(ur =>

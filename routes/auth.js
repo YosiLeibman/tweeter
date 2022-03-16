@@ -64,8 +64,8 @@ router.post('/login', async (req, res) => {
     }
 
     // create tokens
-    const accessToken = jwt.sign({ username, nick: user.nickname }, "SomeSecret", { expiresIn: '7m' })
-    const refreshToken = jwt.sign({ username, nick: user.nickname }, "SomeOtherSecret", { expiresIn: '100d' })
+    const accessToken = jwt.sign({ username, nick: user.nickname }, process.env.ACCESS_TOKEN, { expiresIn: '7m' })
+    const refreshToken = jwt.sign({ username, nick: user.nickname }, process.env.REFRESH_TOKEN, { expiresIn: '100d' })
 
     // save the refresh token in the valut
     refreshes[username] = refreshToken

@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken")
 
 module.exports.everyone = function (req, res, next) {
+    console.log(req.cookies)
     try {
         const dec = jwt.decode(req.cookies.sid)
         if (dec) {
