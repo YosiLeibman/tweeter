@@ -38,6 +38,7 @@ router.post('/', onlyLogged, (req, res) => {
 
     user.tweets.push({
         id: v4(),
+        author: req.user.username,
         text,
         comments:[],
         likes:[],
