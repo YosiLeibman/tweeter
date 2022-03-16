@@ -3,6 +3,7 @@ const { db } = require('../db/db')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { refreshes } = require('../db/refreshes')
+const { onlyLogged } = require('../helpers/onlyLogged')
 
 
 
@@ -59,7 +60,7 @@ router.post('/login', async (req, res) => {
     const match = await bcrypt.compare(password, user.password)
 
     if (!match) {
-        return res.status(401).send({ err: 'wroge password' })
+        return res.status(401).send({ err: 'wronge password' })
     }
 
     // create tokens
@@ -71,15 +72,17 @@ router.post('/login', async (req, res) => {
 
     // save the access token in the client cookie
     res.cookie("sid", accessToken, {
-        httpOnly:true,
-        secure:false
+        httpOnly: true,
+        secure: false
     })
 
-    res.send({msg:'welcome '+username})
+    res.send({ msg: 'welcome ' + username })
 })
 
-router.delete('/logout', (req, res) => {
-
+router.delete('/logout', onlyLogged, (req, res) => {
+    refreshes[req.user.username] = undefined
+    res.clearCookie("sid")
+    res.send({msg:'bye bye'})
 })
 
 module.exports = router
